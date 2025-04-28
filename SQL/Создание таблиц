@@ -1,0 +1,59 @@
+create table Пользователи(
+id_пользователя SERIAL primary key not null,
+Логин text not null,
+Пароль text not null,
+ФИО text not null,
+Телефон varchar(12) not null,
+Пол text not null,
+Категория_инвалидности text not null,
+Почта text not null
+);
+
+
+create table График_работы(
+id_расписания SERIAL primary key not null,
+дни_недели text not null
+);
+
+create table Сотрудник(
+id_сотрудника SERIAL primary key not null,
+Логин text not null,
+Пароль text not null,
+ФИО text not null,
+Телефон varchar(12) not null,
+Почта text not null,
+Пол text not null,
+расписание_fk int not null,
+foreign key (расписание_fk) references График_работы(id_расписания) on update cascade,
+Занятость boolean not null
+);
+
+create table Группа_реагирования (
+id_группы SERIAL primary key not null,
+Количество_человек int not null,
+Сотрудники text not null,
+Готовность boolean not null
+);
+
+create table Заявки(
+id_заявки SERIAL primary key not null,
+пользователь_fk int not null,
+foreign key (пользователь_fk) references Пользователи(id_пользователя) on update cascade,
+группа_сотрудников_fk int not null,
+foreign key (группа_сотрудников_fk) references Группа_реагирования(id_группы) on update cascade,
+Начальная_станция text not null,
+Конечная_станция text not null,
+Дата_создания TIMESTAMP not null,
+Дата_начала TIMESTAMP,
+Дата_окончания TIMESTAMP,
+Общее_время TIMESTAMP,
+Комментарий_группы text,
+Комментарий_пользователя text,
+Статус_заявки text not null
+);
+
+create table Типовые_ситуации(
+Название text primary key not null,
+Алгоритм_действий text not null
+);
+
