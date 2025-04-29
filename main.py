@@ -42,6 +42,17 @@ background: #f36983;
 border-radius: 20px;
 }
 
+QTimeEdit {
+color: black;
+background: white;
+}
+
+QCalendarWidget QAbstractItemView{
+background: black;
+color: white;
+selection-color: white;
+}
+
 QMessageBox {
 background: white;
 color: black;
@@ -60,6 +71,13 @@ font-size: 20px;
 QFrame {
 background: white; 
 }
+
+QTextEdit {
+color: black;
+background: white;
+font-size: 20px;
+padding: 5px;
+} 
 
 QLineEdit {
 background: white;
@@ -80,11 +98,41 @@ padding-left: 10px;
 font-size: 20px;
 }
 
-#instruction_label {
+#verification_mail_style {
+color: black;
+background: white;
+qproperty-alignment: AlignCenter;
 font-size: 20px;
+}
+
+#small_title_style {
+color: black;
+font-size: 25px;
+qproperty-alignment: AlignCenter;
+font-weight: bold;
+}
+
+#instruction_label {
+font-size: 16px;
 qproperty-alignment: AlignCenter;
 color: black;
 background: none;
+}
+
+#account_normal_text {
+color: black;
+padding: 5px;
+background: white;
+font-size: 20px;
+}
+
+#account_title_text {
+color: black;
+padding: 5px;
+background: white;
+font-size: 28px;
+qproperty-alignment: AlignCenter;
+font-weight: bold;
 }
 
 #simple_button {
@@ -117,6 +165,22 @@ background: none;
 color: black;
 padding: 10px;
 font-size: 18px;
+}
+
+QRadioButton::indicator:checked {
+background: #ed2934;
+border-radius: 20px;
+}
+QRadioButton::indicator {
+background: white;
+border-radius: 20px;
+}
+
+QRadioButton {
+color: black;
+background: none;
+font-size: 20px;
+
 }
 
 #hide_btn:hover {

@@ -49,11 +49,18 @@ foreign key (группа_сотрудников_fk) references Группа_р�
 Общее_время TIMESTAMP,
 Комментарий_группы text,
 Комментарий_пользователя text,
-Статус_заявки text not null
+Статус_заявки text not null,
+Маршрут text not null
 );
 
 create table Типовые_ситуации(
 Название text primary key not null,
 Алгоритм_действий text not null
+);
+
+create table История (
+id_истории SERIAL primary key not null,
+Заявка_fk int not null,
+foreign key (Заявка_fk) references Заявки(id_заявки) on update cascade
 );
 

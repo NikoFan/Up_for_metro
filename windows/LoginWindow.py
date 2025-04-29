@@ -1,12 +1,17 @@
 from PySide6.QtWidgets import (QLabel, QFrame, QPushButton, QLineEdit,
                                QVBoxLayout, QWidget, QHBoxLayout)
+
+from Storage.StaticDataSaver import StaticDataSaver
 from windows import RegistrationWindow
+from tools.AlertMessage import *
+from windows.UsersWindows.MainPage import MainUserPage
 
 
 class LoginWindowClass(QFrame):
     def __init__(self, controller):
         super().__init__()
         self.controller = controller
+        self.database = controller.db_connect
         self.frame_layout = QHBoxLayout(self)
         self.setup_ui()
 
@@ -48,7 +53,7 @@ class LoginWindowClass(QFrame):
         log_in_button = QPushButton("Войти")
         log_in_button.setObjectName("simple_button")
         log_in_button.clicked.connect(
-            lambda : print("log in")
+            self.check_log_and_pass
         )
         login_widget_layout.addWidget(log_in_button)
 
@@ -61,3 +66,15 @@ class LoginWindowClass(QFrame):
         login_widget_layout.addWidget(registration_button)
 
         login_widget_layout.addStretch()
+
+    def check_log_and_pass(self):
+        """ Метод проверки логина и пароля """
+        if self.database.account_authorization(self.login_input.text(),
+                                               self.password_input.text()):
+            if StaticDataSaver().get_role() == "Пользователь":
+                self.controller.switch_window(MainUserPage)
+                return
+            # ОТКРЫТЬ ОКНО СОТРУДНИКА
+            return
+        show_critical_alert_simple(self,
+                                   "Такого пользователя не существует!")

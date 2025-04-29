@@ -1,13 +1,18 @@
 from PySide6.QtWidgets import (QLabel, QFrame, QPushButton, QLineEdit,
                                QVBoxLayout, QWidget, QHBoxLayout, QComboBox)
 
-from windows import LoginWindow, HandicappedLvlInput
+from windows import (LoginWindow, MailVerificationWindow,
+                     HandicappedLvlInput)
 from Storage.SaveInputUserData import UserInputDataSave
+from Storage.StaticDataSaver import StaticDataSaver
 
 
 class RegistrationWindowClass(QFrame):
     def __init__(self, controller):
         super().__init__()
+        # Пересоздание кода для почты, для исключения фактора дырявой верификации
+        StaticDataSaver.generate_code()
+
         self.controller = controller
         self.old_input_data = UserInputDataSave().get_data()
         self.frame_layout = QHBoxLayout(self)
@@ -150,3 +155,6 @@ class RegistrationWindowClass(QFrame):
             # Если регистрируется пользователь - Он должен указать степень инвалидности
             self.controller.switch_window(HandicappedLvlInput.HandicappedLvlInputClass)
             return
+        # Если роль - Волонтер
+        # Необходимо перейти в окно подтверждения почты
+        self.controller.switch_window(MailVerificationWindow.MailVerificationClass)
