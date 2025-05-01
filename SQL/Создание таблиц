@@ -31,8 +31,9 @@ foreign key (расписание_fk) references График_работы(id_р
 create table Группа_реагирования (
 id_группы SERIAL primary key not null,
 Количество_человек int not null,
-Сотрудники text not null,
-Готовность boolean not null
+Сотрудники int[] not null,
+Готовность boolean not null,
+Нужность boolean not null
 );
 
 create table Заявки(

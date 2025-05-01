@@ -5,6 +5,7 @@ from Storage.StaticDataSaver import StaticDataSaver
 from windows import RegistrationWindow
 from tools.AlertMessage import *
 from windows.UsersWindows.MainPage import MainUserPage
+from windows.WorkersWindows.WorkerMainPage import MainWorkerPage
 
 
 class LoginWindowClass(QFrame):
@@ -74,7 +75,7 @@ class LoginWindowClass(QFrame):
             if StaticDataSaver().get_role() == "Пользователь":
                 self.controller.switch_window(MainUserPage)
                 return
-            # ОТКРЫТЬ ОКНО СОТРУДНИКА
+            self.controller.switch_window(MainWorkerPage)
             return
         show_critical_alert_simple(self,
                                    "Такого пользователя не существует!")

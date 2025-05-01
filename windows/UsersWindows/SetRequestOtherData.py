@@ -6,13 +6,9 @@ from PySide6.QtCore import QLocale
 
 from windows.UsersWindows import AcceptRequest, SetInfoAboutItems
 
-from tools.MetroGraphLogic import MetroGraph
-from Storage.SaveInputUserData import UserInputDataSave
 from Storage.StaticDataSaver import StaticDataSaver
-from tools.SystemMessages import SystemMessageBox
 from tools.AlertMessage import *
-import json
-
+from tools.CheckData import is_date_valid
 
 class AddNewRequestData(QFrame):
     def __init__(self, controller):
@@ -71,7 +67,15 @@ class AddNewRequestData(QFrame):
         """ Сохранение выбранной даты """
         y, m, d = self.date_input.selectedDate().getDate()
 
+
+
         user_date = f"{y}-{m}-{d}"
+        if not is_date_valid(user_date):
+            print("no")
+            show_critical_alert_simple(self, "Дата не может быть в прошлом!")
+            return
+
+
         week_day_translate = {
             1:"Понедельник",
             2:"Вторник",

@@ -19,6 +19,9 @@ class StaticDataSaver:
     __req_date: str = None
     __week_day: str = None
 
+    # Группы
+    __group_current_id: int = None
+
     @staticmethod
     def get_code() -> int: return StaticDataSaver.__verification_code
 
@@ -41,6 +44,7 @@ class StaticDataSaver:
 
     @staticmethod
     def set_customer_id(id_number: int):
+        """ Метод записи активного id пользователя программы (Пользователь/сотрудник)"""
         StaticDataSaver.__customer_id = id_number
 
     @staticmethod
@@ -48,10 +52,12 @@ class StaticDataSaver:
 
     @staticmethod
     def set_start_station(station_name: str):
+        """ Метод установки станции отправления """
         StaticDataSaver.__start_station = station_name
 
     @staticmethod
     def set_end_station(station_name: str):
+        """ Метод установки последней станции """
         StaticDataSaver.__end_station = station_name
 
     @staticmethod
@@ -62,7 +68,7 @@ class StaticDataSaver:
 
     @staticmethod
     def set_type_of_request(req_type: str):
-        """ Метод установки типа создаваемой заявки """
+        """ Метод критерия построения маршрута (на что делать упор) типа создаваемой заявки """
         StaticDataSaver.__type_of_request = req_type
 
     @staticmethod
@@ -71,6 +77,7 @@ class StaticDataSaver:
 
     @staticmethod
     def set_route(route_data: str):
+        """ Метод записи маршрута от станции к станции """
         StaticDataSaver.__user_route = route_data
 
     @staticmethod
@@ -78,6 +85,7 @@ class StaticDataSaver:
 
     @staticmethod
     def set_route_time(time: int):
+        """ Метод записи среднего времени для маршрута """
         StaticDataSaver.__route_time = time
 
     @staticmethod
@@ -86,19 +94,34 @@ class StaticDataSaver:
 
     @staticmethod
     def set_req_time(time: str):
+        """ Метод установки запланированного времени """
         StaticDataSaver.__req_time = time
 
     @staticmethod
     def set_req_date(date: str):
+        """ Метод установки даты для дальнейшего считывания и записи"""
         StaticDataSaver.__req_date = date
 
     @staticmethod
     def get_req_time() -> str: return StaticDataSaver.__req_time
 
     @staticmethod
+    def get_req_date() -> str: return StaticDataSaver.__req_date
+
+    @staticmethod
     def set_req_week_day(day_name: str):
+        """ Метод установки дня недели, на который планируется поездка """
         StaticDataSaver.__week_day = day_name
 
     @staticmethod
     def get_req_week_day() -> str: return StaticDataSaver.__week_day
+
+
+    @staticmethod
+    def set_new_group_id(new_id: int):
+        """ Метод записи id для обрабатываемой группы """
+        StaticDataSaver.__group_current_id = new_id
+
+    @staticmethod
+    def get__new_group_id() -> int: return StaticDataSaver.__group_current_id
 

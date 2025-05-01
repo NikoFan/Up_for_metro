@@ -67,3 +67,21 @@ def rout(dict_to_check: dict) -> list:
         except Exception:
             ...
     return [True]
+
+
+from datetime import datetime
+def is_date_valid(input_date_str, date_format="%Y-%m-%d"):
+    try:
+        # Преобразуем строку в объект datetime
+        input_date = datetime.strptime(input_date_str, date_format).date()
+        today = datetime.now().date()
+
+        if input_date <= today:
+            print("Ошибка: Дата не может быть раньше сегодняшней!")
+            return False
+        else:
+            print("Дата корректна!")
+            return True
+    except ValueError:
+        print("Ошибка: Неверный формат даты!")
+        return False

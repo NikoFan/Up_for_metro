@@ -6,6 +6,7 @@ from Storage.SaveInputUserData import UserInputDataSave
 from Storage.StaticDataSaver import StaticDataSaver
 from tools.SystemMessages import SystemMessageBox
 from tools.AlertMessage import *
+from windows.WorkersWindows.WorkerMainPage import MainWorkerPage
 
 
 class SelectWorkPlanClass(QFrame):
@@ -87,6 +88,9 @@ class SelectWorkPlanClass(QFrame):
                     StaticDataSaver().set_customer_id(worker_id)
                     # Запись роли в статический файл
                     StaticDataSaver().set_role(self.old_form_data["Роль"])
+
+                    # Открытие окна пользователя
+                    self.controller.switch_window(MainWorkerPage)
                     return
                 show_critical_alert_simple(self, "Ошибка создания аккаунта!")
                 return

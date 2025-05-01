@@ -53,13 +53,34 @@ color: white;
 selection-color: white;
 }
 
+QScrollBar:vertical {
+    background: white;
+    width: 16px;
+}
+
+QScrollBar::handle:vertical {
+    background: #ed2934;
+    width: 16px;
+    border-radius: 5px;
+}
+
+QScrollBar::add-line:vertical, QScrollBar::sub-line:vertical {
+    background: none;
+    height: 0px;
+}
+
 QMessageBox {
 background: white;
 color: black;
 }
 
+#widget {
+background: transparent;
+}
+
 QLabel {
 color: black;
+background-color: transparent;
 }
 
 QComboBox {
@@ -85,6 +106,11 @@ color: black;
 font-size: 20px;
 }
 
+#req_card {
+border: 2px solid black;
+background: white;
+}
+
 #title_style {
 font-size: 35px;
 color: #ed2934;
@@ -92,15 +118,22 @@ font-weight: bold;
 qproperty-alignment: AlignCenter;
 }
 
+#active_req_style {
+border: none;
+background: #fcdcde;
+border-radius: 5px;
+}
+
 #hint_text {
 color: black;
 padding-left: 10px;
 font-size: 20px;
+background: none;
 }
 
 #verification_mail_style {
 color: black;
-background: white;
+background: none;
 qproperty-alignment: AlignCenter;
 font-size: 20px;
 }
@@ -108,6 +141,7 @@ font-size: 20px;
 #small_title_style {
 color: black;
 font-size: 25px;
+background: none;
 qproperty-alignment: AlignCenter;
 font-weight: bold;
 }
